@@ -9,7 +9,7 @@ function JobDetails() {
 
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [resumeUrl, setResumeUrl] = useState("");
+  const [resume, setResume] = useState(null);
   const [message, setMessage] = useState("");
 
   const token = localStorage.getItem("token");
@@ -38,30 +38,26 @@ function JobDetails() {
       return;
     }
 
-    if (!resumeUrl) {
-      setMessage("Please paste your resume link");
+    if (!resume) {
+      setMessage("Please select your resume file");
       return;
     }
 
     try {
-      await api.post(
-        "/applications",
-        {
-          jobId: id,
-          resumeUrl: resumeUrl,
+      const formData = new FormData();
+      formData.append("jobId", id);
+      formData.append("resume", resume);
+
+      await api.post("/applications", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      });
 
       setMessage("Applied successfully");
-      setResumeUrl("");
     } catch (err) {
       console.error(err);
-      setMessage("Failed to apply ❌");
+      setMessage("Failed to apply");
     }
   };
 
@@ -71,9 +67,7 @@ function JobDetails() {
   return (
     <div className="job-page">
       <div className="job-wrapper">
-        <Link to="/jobs" className="back-link">
-          ← Back to Jobs
-        </Link>
+        <Link to="/jobs" className="back-link">← Back to Jobs</Link>
 
         <div className="job-card">
           <h1>{job.title}</h1>
@@ -89,12 +83,10 @@ function JobDetails() {
           <p className="job-desc">{job.description}</p>
 
           <form onSubmit={handleApply} className="apply-form">
-            <label>Paste Resume Link (Google Drive, etc)</label>
+            <label>Upload Resume (PDF/DOC)</label>
             <input
-              type="text"
-              placeholder="https://drive.google.com/..."
-              value={resumeUrl}
-              onChange={(e) => setResumeUrl(e.target.value)}
+              type="file"
+              onChange={(e) => setResume(e.target.files[0])}
             />
 
             <button type="submit" className="apply-btn">
