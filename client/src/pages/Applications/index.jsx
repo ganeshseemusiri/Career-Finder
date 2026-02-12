@@ -3,6 +3,8 @@ import api from "../../services/api";
 import { Link } from "react-router-dom";
 import "./index.css";
 
+const BACKEND_URL = import.meta.env.VITE_API_URL.replace("/api", "");
+
 function Applications() {
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,7 +58,7 @@ function Applications() {
               </Link>
 
               <a
-                href={`http://localhost:5000/${a.resume}`}
+                href={`${BACKEND_URL}${user.resume}`}
                 target="_blank"
                 rel="noreferrer"
                 className="btn secondary"

@@ -3,6 +3,8 @@ import api from "../../services/api";
 import { Link } from "react-router-dom";
 import "./index.css";
 
+const BACKEND_URL = import.meta.env.VITE_API_URL.replace("/api", "");
+
 function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -90,7 +92,7 @@ function Profile() {
           {user.resume ? (
             <>
               <a
-                href={`http://localhost:5000${user.resume}`}
+                href={`${BACKEND_URL}${user.resume}`}
                 target="_blank"
                 rel="noreferrer"
                 className="view-resume-btn"
