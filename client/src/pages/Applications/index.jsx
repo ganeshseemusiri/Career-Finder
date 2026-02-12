@@ -58,7 +58,7 @@ function Applications() {
               </Link>
 
               <a
-                href={`${BACKEND_URL}${a.resume}`}
+                href={`${BACKEND_URL}/${a.resume}`}
                 target="_blank"
                 rel="noreferrer"
                 className="btn secondary"
