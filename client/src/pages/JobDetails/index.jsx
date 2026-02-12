@@ -9,7 +9,7 @@ function JobDetails() {
 
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [resume, setResume] = useState(null);
+  const [resumeUrl, setResumeUrl] = useState("");
   const [message, setMessage] = useState("");
 
   const token = localStorage.getItem("token");
@@ -38,26 +38,30 @@ function JobDetails() {
       return;
     }
 
-    if (!resume) {
-      setMessage("Please select your resume file");
+    if (!resumeUrl) {
+      setMessage("Please paste your resume link");
       return;
     }
 
     try {
-      const formData = new FormData();
-      formData.append("jobId", id);
-      formData.append("resume", resume);
-
-      await api.post("/applications", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await api.post(
+        "/applications",
+        {
+          jobId: id,
+          resumeUrl: resumeUrl,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       setMessage("Applied successfully");
+      setResumeUrl("");
     } catch (err) {
       console.error(err);
-      setMessage("Failed to apply");
+      setMessage("Failed to apply ❌");
     }
   };
 
@@ -67,7 +71,9 @@ function JobDetails() {
   return (
     <div className="job-page">
       <div className="job-wrapper">
-        <Link to="/jobs" className="back-link">← Back to Jobs</Link>
+        <Link to="/jobs" className="back-link">
+          ← Back to Jobs
+        </Link>
 
         <div className="job-card">
           <h1>{job.title}</h1>
@@ -83,10 +89,12 @@ function JobDetails() {
           <p className="job-desc">{job.description}</p>
 
           <form onSubmit={handleApply} className="apply-form">
-            <label>Upload Resume (PDF/DOC)</label>
+            <label>Paste Resume Link (Google Drive, etc)</label>
             <input
-              type="file"
-              onChange={(e) => setResume(e.target.files[0])}
+              type="text"
+              placeholder="https://drive.google.com/..."
+              value={resumeUrl}
+              onChange={(e) => setResumeUrl(e.target.value)}
             />
 
             <button type="submit" className="apply-btn">
