@@ -83,29 +83,30 @@ router.get("/me", authMiddleware, async (req, res) => {
 
 router.put("/me", authMiddleware, upload.single("resume"), async (req, res) => {
   try {
-    const { skills, experience, bio, resume } = req.body;
+    const { skills, experience, bio } = req.body;
 
     if (skills !== undefined) req.user.skills = skills;
     if (experience !== undefined) req.user.experience = experience;
     if (bio !== undefined) req.user.bio = bio;
 
     if (req.file) {
-      req.user.resume = "/uploads/" + req.file.filename;
-    }
+     
+      if (req.user.resume) {
+        const oldPath = path.join(process.cwd(), req.user.resume);
+        if (fs.existsSync(oldPath)) {
+          fs.unlinkSync(oldPath);
+        }
+      }
 
-   
-    if (resume === "") {
-      req.user.resume = "";
+      req.user.resume = "/uploads/" + req.file.filename;
     }
 
     await req.user.save();
     res.json(req.user);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ message: "Failed to update profile" });
   }
 });
-
 
 
 router.post("/resume", authMiddleware, upload.single("resume"), async (req, res) => {
