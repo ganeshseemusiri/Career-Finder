@@ -1,0 +1,102 @@
+.jobcard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.jobcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.15);
+}
+
+.jobcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jobcard-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #0f172a;
+}
+
+.jobcard-type {
+  background: #e0e7ff;
+  color: #1d4ed8;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.jobcard-company {
+  margin: 0;
+  color: #334155;
+  font-weight: 600;
+}
+
+.jobcard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.jobcard-btn {
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.jobcard-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.01);
+}
+.jobcard-link {
+  text-decoration: none;
+  color: inherit;
+}
+.jobcard-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.jobcard-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.save-btn {
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.save-btn:hover {
+  background: #eef2ff;
+}
+
+.save-btn.saved {
+  background: #2563eb;
+  color: #ffffff;
+}

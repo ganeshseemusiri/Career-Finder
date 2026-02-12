@@ -1,0 +1,110 @@
+.applications-page {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.applications-page h1 {
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+}
+
+
+.applications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+
+
+.app-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.4rem 1.4rem 1.2rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.app-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-card h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+}
+
+.badge {
+  background: #e0e7ff;
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+
+.company {
+  margin: 0.4rem 0 0.2rem;
+  font-weight: 600;
+  color: #1f2933;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-bottom: 0.6rem;
+}
+
+
+.status-row {
+  margin-bottom: 0.8rem;
+}
+
+.status-badge {
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #1e4fd8;
+}
+
+.btn.secondary {
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  background: transparent;
+}
+
+.btn.secondary:hover {
+  background: #eef2ff;
+}

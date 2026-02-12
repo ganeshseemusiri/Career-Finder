@@ -1,0 +1,25 @@
+.filters-wrapper {
+  margin-bottom: 1.2rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.filters-bar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.filters-bar select {
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+}
