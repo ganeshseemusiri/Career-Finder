@@ -23,11 +23,13 @@ function Login() {
     setError("");
 
     try {
+      setLoading(true)
       const res = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.token);
       navigate("/jobs");
     } catch (err) {
       setError("Invalid email or password");
+      setError(false)
     }
   };
 
