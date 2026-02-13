@@ -47,20 +47,22 @@ function Profile() {
 
   const handleDeleteResume = async () => {
     try {
-      const res = await api.put(
-        "/auth/me",
-        { resume: "" },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const res = await api.delete("/auth/resume", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-      setUser(res.data);
+      // Reload profile
+      const me = await api.get("/auth/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setUser(me.data);
       setShowDeleteModal(false);
     } catch (err) {
       console.error("Failed to delete resume", err);
     }
   };
+
 
   if (loading) return <p className="loading">Loading profile...</p>;
   if (!user) return <p>Failed to load profile.</p>;
