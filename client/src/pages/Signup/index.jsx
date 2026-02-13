@@ -31,10 +31,12 @@ function Signup() {
     }
 
     try {
+      setLoading(true)
       await api.post("/auth/register", { name, email, password });
       navigate("/login");
     } catch (err) {
       setError("Registration failed. Try another email.");
+      setLoading(false)
     }
   };
 
