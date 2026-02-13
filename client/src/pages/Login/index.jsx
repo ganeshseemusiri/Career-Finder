@@ -8,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,8 +69,8 @@ function Login() {
             </div>
           </div>
 
-          <button type="submit" className="auth-btn">
-            Login
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
           </button>
 
           <p className="auth-switch">

@@ -11,6 +11,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -103,8 +104,8 @@ function Signup() {
             </div>
           </div>
 
-          <button type="submit" className="auth-btn">
-            Create Account
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Signing up..." : "Sign Up"}
           </button>
 
           <p className="auth-switch">
